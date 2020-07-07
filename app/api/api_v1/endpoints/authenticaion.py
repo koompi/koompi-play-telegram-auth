@@ -34,8 +34,10 @@ async def login(
 async def confirm(
     req: Confirm
 ):
-    _id = await sign_in(req)
+    _id, fname, lname = await sign_in(req)
     return ConfirmResponse(
         id=_id,
-        phone=req.phone
+        phone=req.phone,
+        first_name=fname,
+        last_name=lname
     )

@@ -56,7 +56,7 @@ async def sign_in(req):
         me = await client.get_me()
         await client.disconnect()
         os.remove(f"{req.phone}.session")
-        return me.id
+        return me.id, me.first_name, me.last_name
     except SessionPasswordNeededError:
         raise HTTPException(
             status_code=400,

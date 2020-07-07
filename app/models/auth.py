@@ -17,6 +17,8 @@ class Confirm(SignInResponse):
 
 class ConfirmResponse(BaseModel):
     id: str
+    first_name: str = None
+    last_name: str = None
     phone: str
     # gender: str
     profile: str = None
