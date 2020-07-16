@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
@@ -30,5 +31,5 @@ app.add_exception_handler(
 )
 app.include_router(api_router, prefix=API_V1_STR)
 
-
-# uvicorn app.main:app --reload
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

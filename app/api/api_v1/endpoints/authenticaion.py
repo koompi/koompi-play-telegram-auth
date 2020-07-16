@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter
 from ....models.auth import (
     SignIn,
@@ -34,7 +35,11 @@ async def login(
 async def confirm(
     req: Confirm
 ):
-    _id, fname, lname = await sign_in(req)
+    try:
+        _id, fname, lname = await sign_in(req)
+        os.remove(f"{req.phone}.session")
+    except Exception:
+        os.remove(f"{req.phone}.session")
     return ConfirmResponse(
         id=_id,
         phone=req.phone,
